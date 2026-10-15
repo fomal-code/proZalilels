@@ -1,9 +1,4 @@
-/* ============================================
-   ZALIELS — catalogue.js
-   Loads PUBLISHED products from Cloud Firestore and hands them to the
-   existing storefront via Zaliels.setProducts(). Only runs when
-   firebase-config.js has real values; otherwise products.js is used.
-   ============================================ */
+
 const FB = window.ZALIELS_FIREBASE;
 const Z = window.Zaliels;
 
