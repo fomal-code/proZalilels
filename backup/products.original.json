@@ -1,0 +1,99 @@
+{
+  "backedUpFrom": "products.js (original upload zalielsOriginal.zip)",
+  "config": {
+    "brand": "Zaliels",
+    "whatsappNumber": "2349138947809",
+    "currencyCode": "NGN",
+    "currencySymbol": "₦",
+    "pageSize": 6,
+    "storageKey": "zaliels_cart_v1",
+    "onCheckout": null,
+    "siteUrl": "",
+    "ogImage": "",
+    "deliveryNote": "",
+    "social": {
+      "instagram": "",
+      "pinterest": ""
+    }
+  },
+  "products": [
+    {
+      "id": "velour-drape-coat",
+      "name": "Velour Drape Coat",
+      "price": 185000,
+      "images": [
+        "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    },
+    {
+      "id": "silk-column-dress",
+      "name": "Silk Column Dress",
+      "price": 142000,
+      "images": [
+        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    },
+    {
+      "id": "wool-tailored-blazer",
+      "name": "Wool Tailored Blazer",
+      "price": 210000,
+      "images": [
+        "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    },
+    {
+      "id": "linen-wide-leg-trouser",
+      "name": "Linen Wide-Leg Trouser",
+      "price": 98000,
+      "images": [
+        "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    },
+    {
+      "id": "cashmere-minimal-sweater",
+      "name": "Cashmere Minimal Sweater",
+      "price": 125000,
+      "images": [
+        "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    },
+    {
+      "id": "structured-midi-skirt",
+      "name": "Structured Midi Skirt",
+      "price": 88000,
+      "images": [
+        "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80"
+      ],
+      "description": "",
+      "category": "",
+      "sizes": [],
+      "colours": [],
+      "stock": null
+    }
+  ]
+}

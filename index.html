@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaliels — Luxury Fashion</title>
+  <meta name="description" content="Zaliels — luxury fashion for those who require no introduction. Explore the collection: coats, dresses, blazers, trousers, knitwear and skirts." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Zaliels — Luxury Fashion" />
+  <meta property="og:description" content="Dressed for those who require no introduction." />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&amp;display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ANNOUNCEMENT -->
+  
+  <!-- HEADER -->
+  <header class="nav" id="nav">
+    <nav class="nav__bar" aria-label="Primary">
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">Menu</button>
+      <ul class="nav__links">
+        <li><a href="#collection">Shop</a></li>
+        <li><a href="#lookbook">Lookbook</a></li>
+        <li><a href="#about">Story</a></li>
+      </ul>
+      <a class="nav__logo" href="#hero" aria-label="Zaliels home">Zaliels</a>
+      <div class="nav__actions">
+        <a class="nav__link-contact" href="#contact">Contact</a>
+        <button class="nav__cart" id="cartToggle" type="button" aria-label="Open cart" aria-haspopup="dialog">Cart<span class="nav__cart-count" id="cartCount" hidden>0</span></button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+    <button class="mobile-menu__close" id="mobileClose" type="button" aria-label="Close menu">Close</button>
+    <ul>
+      <li><a href="#collection" class="mobile-link">Shop</a></li>
+      <li><a href="#lookbook" class="mobile-link">Lookbook</a></li>
+      <li><a href="#about" class="mobile-link">Story</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+    <a class="mobile-menu__wa" href="https://wa.me/2349138947809" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+  </div>
+
+  <main id="main">
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-label="Introduction">
+    <img class="hero__img" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=2000&q=80" srcset="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=900&q=80 900w, https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1400&q=80 1400w, https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=2000&q=80 2000w" sizes="100vw" width="2000" height="1333" alt="Model wearing Zaliels" fetchpriority="high" />
+    <div class="hero__copy">
+      <h1 class="hero__title">Dressed for those who require no introduction.</h1>
+      <p class="hero__tagline">Coats, dresses, blazers, trousers, knitwear and skirts. Made in small runs, sold from Lagos.</p>
+      <a href="#collection" class="hero__link">Shop the collection</a>
+    </div>
+  </section>
+
+  <!-- COLLECTION -->
+  <section class="collection" id="collection" aria-labelledby="collectionTitle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" id="collectionTitle">Collection</h2>
+        <p class="section-sub">Six pieces, each cut for movement and made to last.</p>
+        <span class="visually-hidden" id="collectionLabel">Collection</span>
+      </div>
+
+      <div class="shop" id="shop">
+        <div class="shop-toolbar">
+          <div class="shop-toolbar__row">
+            <label class="visually-hidden" for="shopSearch">Search products</label>
+            <input type="search" id="shopSearch" class="shop-input shop-search" placeholder="Search" autocomplete="off" />
+            <label class="visually-hidden" for="shopSort">Sort products</label>
+            <select id="shopSort" class="shop-input shop-sort">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="name-asc">Name, A to Z</option>
+              <option value="name-desc">Name, Z to A</option>
+            </select>
+            <button type="button" class="shop-filter-toggle" id="shopFilterToggle" aria-expanded="false" aria-controls="shopFilters">Filters</button>
+          </div>
+          <div class="shop-filters" id="shopFilters">
+            <div class="shop-field" id="fieldCategory" hidden>
+              <label for="filterCategory">Category</label>
+              <select id="filterCategory" class="shop-input"><option value="">All</option></select>
+            </div>
+            <div class="shop-field" id="fieldSize" hidden>
+              <label for="filterSize">Size</label>
+              <select id="filterSize" class="shop-input"><option value="">All</option></select>
+            </div>
+            <div class="shop-field" id="fieldColour" hidden>
+              <label for="filterColour">Colour</label>
+              <select id="filterColour" class="shop-input"><option value="">All</option></select>
+            </div>
+            <div class="shop-field">
+              <span class="shop-field__label" id="priceLabel">Price (₦)</span>
+              <div class="shop-price" role="group" aria-labelledby="priceLabel">
+                <input type="number" id="priceMin" class="shop-input" min="0" inputmode="numeric" placeholder="Min" aria-label="Minimum price" />
+                <span aria-hidden="true">–</span>
+                <input type="number" id="priceMax" class="shop-input" min="0" inputmode="numeric" placeholder="Max" aria-label="Maximum price" />
+              </div>
+            </div>
+            <label class="shop-check" id="fieldStock" hidden><input type="checkbox" id="filterStock" /> In stock only</label>
+            <button type="button" class="shop-clear" id="shopClear">Clear filters</button>
+          </div>
+        </div>
+
+        <p class="shop-count" id="shopCount" role="status" aria-live="polite"></p>
+        <div class="product-grid" id="productGrid"></div>
+        <noscript><p class="shop-count">Please enable JavaScript to browse the collection.</p></noscript>
+        <div class="shop-error" id="shopError" role="alert" hidden>
+          <p id="shopErrorMsg">We couldn't load the collection.</p>
+          <button type="button" class="btn btn--line" id="shopRetry">Try again</button>
+        </div>
+        <div class="shop-empty" id="shopEmpty" hidden>
+          <p>No pieces match your search or filters.</p>
+          <button type="button" class="btn btn--line" id="shopClear2">Clear filters</button>
+        </div>
+        <nav class="pagination" id="pagination" aria-label="Product pages" hidden></nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about" aria-labelledby="aboutTitle">
+    <div class="container about__layout">
+      <figure class="about__figure">
+        <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=1000&q=80" alt="Model in a Zaliels look, editorial portrait" width="900" height="1125" loading="lazy" decoding="async" />
+      </figure>
+      <div class="about__text">
+        <h2 class="about__heading" id="aboutTitle">Luxury is not worn. It is felt.</h2>
+        <p class="about__body">Zaliels began in 2019 with one belief: clothes should move with you, speak without words and outlast the season. Every piece is cut in rare fabric and finished by hand, for people who know the difference between fashion and dress.</p>
+        <p class="about__body">We work with a small circle of ateliers across Milan and Marrakech and use only materials that earn their place.</p>
+        <dl class="about__points">
+          <div><dt>Small runs</dt><dd>Limited quantities, never mass produced.</dd></div>
+          <div><dt>Hand finished</dt><dd>Every seam checked before it leaves the atelier.</dd></div>
+          <div><dt>Order by chat</dt><dd>Confirm size and delivery with us on WhatsApp.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOOKBOOK -->
+  <section class="lookbook" id="lookbook" aria-labelledby="lookbookTitle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title" id="lookbookTitle">Lookbook</h2>
+        <p class="section-sub">Four looks from the season, styled head to toe.</p>
+      </div>
+      <div class="lookbook-grid">
+        <figure class="look look--a">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1000&q=80" alt="Model in a draped coat" width="800" height="1200" loading="lazy" decoding="async" />
+          <figcaption>The Drape</figcaption>
+        </figure>
+        <figure class="look look--b">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=900&q=80" alt="Model in sharp tailoring" width="800" height="1000" loading="lazy" decoding="async" />
+          <figcaption>The Edge</figcaption>
+        </figure>
+        <figure class="look look--c">
+          <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=900&q=80" alt="Model in relaxed knitwear" width="800" height="1000" loading="lazy" decoding="async" />
+          <figcaption>The Quiet</figcaption>
+        </figure>
+        <figure class="look look--d">
+          <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=80" alt="Model in a statement look" width="1600" height="1000" loading="lazy" decoding="async" />
+          <figcaption>The Statement</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__left">
+          <h2 class="contact__heading" id="contactTitle">Tell us what you need.</h2>
+          <p class="contact__body">Styling advice, bespoke orders or wholesale: send a message and a real person replies. Submitting the form opens WhatsApp with your message ready to send.</p>
+          <div class="contact__details">
+            <div class="contact__detail">
+              <span class="contact__detail-label">Email</span>
+              <a href="mailto:hello@zaliels.com">hello@zaliels.com</a>
+            </div>
+            <div class="contact__detail">
+              <span class="contact__detail-label">WhatsApp</span>
+              <a href="https://wa.me/2349138947809" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            </div>
+            <div class="contact__detail">
+              <span class="contact__detail-label">Location</span>
+              <span>Lagos, Nigeria</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__right">
+          <form class="contact__form" id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="contactName">Full name</label>
+              <input type="text" id="contactName" name="name"  autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email address</label>
+              <input type="email" id="contactEmail" name="email"  autocomplete="email" required />
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <select id="contactSubject" name="subject">
+                <option value="" disabled selected>Select a topic</option>
+                <option value="Order Inquiry">Order Inquiry</option>
+                <option value="Bespoke Request">Bespoke Request</option>
+                <option value="Wholesale">Wholesale</option>
+                <option value="Styling Consultation">Styling Consultation</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="message" rows="5"  required></textarea>
+            </div>
+            <button type="submit" class="btn btn--solid">Send on WhatsApp</button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <p>Thank you. WhatsApp is opening with your message. If it does not open, use the WhatsApp link in the footer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <p class="footer__logo">Zaliels</p>
+        <p class="footer__tagline">Dressed for those who require no introduction.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <h2>Navigate</h2>
+        <ul>
+          <li><a href="#collection">Shop</a></li>
+          <li><a href="#lookbook">Lookbook</a></li>
+          <li><a href="#about">Our story</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer__links">
+        <h2>Visit</h2>
+        <ul>
+          <li><span>Lagos, Nigeria</span></li>
+          <li><a href="mailto:hello@zaliels.com">hello@zaliels.com</a></li>
+        </ul>
+      </div>
+      <div class="footer__social">
+        <h2>Connect</h2>
+        <ul id="footerSocial"></ul>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>&copy; <span id="year"></span> Zaliels. All rights reserved.</p>
+      <a href="#hero">Back to top</a>
+    </div>
+  </footer>
+
+  <!-- ORDER TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- QUICK VIEW -->
+  <div class="qv" id="quickView" role="dialog" aria-modal="true" aria-labelledby="qvTitle" aria-hidden="true">
+    <div class="qv__backdrop" data-close></div>
+    <div class="qv__panel">
+      <button type="button" class="qv__close" data-close aria-label="Close quick view">Close</button>
+      <div class="qv__content" id="qvContent"></div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="cart" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart__backdrop" data-close></div>
+    <aside class="cart__panel">
+      <header class="cart__head">
+        <h2 id="cartTitle">Cart</h2>
+        <button type="button" class="cart__close" data-close aria-label="Close cart">Close</button>
+      </header>
+      <div class="cart__body" id="cartBody"></div>
+      <footer class="cart__foot" id="cartFoot" hidden>
+        <div class="cart__total"><span>Total</span><strong id="cartTotal">₦0</strong></div>
+        <p class="cart__note" id="cartNote">Checkout is completed on WhatsApp.</p>
+        <button type="button" class="btn btn--solid" id="cartCheckout">Checkout on WhatsApp</button>
+        <button type="button" class="cart__clear" id="cartClear">Clear cart</button>
+      </footer>
+    </aside>
+  </div>
+
+  <script src="products.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+  <script src="shop.js"></script>
+  <script type="module" src="catalogue.js"></script>
+</body>
+</html>

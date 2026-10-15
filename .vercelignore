@@ -1,0 +1,7 @@
+backup
+firebase.json
+firestore.rules
+firestore.indexes.json
+storage.rules
+README.md
+tests

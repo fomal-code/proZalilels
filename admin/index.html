@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Zaliels — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..600&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+  <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+
+  <!-- Firebase not configured -->
+  <main class="center" id="viewConfig" hidden>
+    <div class="card">
+      <h1>Firebase is not configured</h1>
+      <p>Open <code>firebase-config.js</code> in the project root and replace every <code>REPLACE_ME</code> with the values from your Firebase web app, then redeploy. See the README for the steps.</p>
+    </div>
+  </main>
+
+  <!-- Loading -->
+  <main class="center" id="viewLoading"><p class="muted">Loading…</p></main>
+
+  <!-- Login -->
+  <main class="center" id="viewLogin" hidden>
+    <form class="card" id="loginForm" novalidate>
+      <p class="brand">ZALIELS</p>
+      <h1>Admin sign in</h1>
+      <label class="field"><span>Email</span><input type="email" id="loginEmail" autocomplete="username" required /></label>
+      <label class="field"><span>Password</span><input type="password" id="loginPassword" autocomplete="current-password" required /></label>
+      <p class="form-error" id="loginError" role="alert"></p>
+      <button class="btn btn--solid" type="submit" id="loginBtn">Sign in</button>
+      <button class="link" type="button" id="resetBtn">Forgot password?</button>
+    </form>
+  </main>
+
+  <!-- Signed in, but not an administrator -->
+  <main class="center" id="viewDenied" hidden>
+    <div class="card">
+      <h1>No access</h1>
+      <p>You are signed in as <strong id="deniedEmail"></strong>, but this account is not an authorised administrator.</p>
+      <button class="btn btn--line" type="button" data-signout>Sign out</button>
+    </div>
+  </main>
+
+  <!-- Dashboard -->
+  <div id="viewApp" hidden>
+    <header class="topbar">
+      <div class="topbar__in">
+        <p class="brand">ZALIELS <span class="muted">Admin</span></p>
+        <nav class="tabs" role="tablist" aria-label="Sections">
+          <button role="tab" class="tab" id="tabProducts" aria-selected="true" data-tab="products">Products</button>
+          <button role="tab" class="tab" id="tabMigration" aria-selected="false" data-tab="migration">Migration</button>
+        </nav>
+        <div class="topbar__user"><span class="muted" id="userEmail"></span><button class="link" type="button" data-signout>Sign out</button></div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <!-- Products -->
+      <section id="panelProducts" aria-labelledby="tabProducts">
+        <div class="toolbar">
+          <input type="search" id="search" placeholder="Search products" aria-label="Search products" />
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="">All statuses</option><option value="published">Published</option><option value="draft">Unpublished</option>
+          </select>
+          <button class="btn btn--solid" type="button" id="addBtn">Add product</button>
+        </div>
+        <p class="muted" id="listMsg" role="status"></p>
+        <div class="list" id="list"></div>
+      </section>
+
+      <!-- Migration -->
+      <section id="panelMigration" hidden aria-labelledby="tabMigration">
+        <div class="card card--wide">
+          <h2>Import products from <code>products.js</code></h2>
+          <p>Copies the products hardcoded in <code>products.js</code> into Firestore, keeping their IDs, fields and image URLs. Products whose ID already exists in Firestore are <strong>skipped, never overwritten</strong>, so it is safe to run again.</p>
+          <ol class="steps">
+            <li><strong>Download the backup</strong> of the original data first.</li>
+            <li><strong>Dry run</strong> to see what would be created or skipped. Nothing is written.</li>
+            <li><strong>Run migration</strong>. Each product is read back afterwards to confirm it exists.</li>
+          </ol>
+          <p class="muted" id="migInfo"></p>
+          <div class="row">
+            <button class="btn btn--line" type="button" id="migBackup">1. Download backup (JSON)</button>
+            <button class="btn btn--line" type="button" id="migDry">2. Dry run</button>
+            <button class="btn btn--solid" type="button" id="migRun">3. Run migration</button>
+          </div>
+          <p class="muted" id="migLast"></p>
+          <div class="table-wrap"><table class="table" id="migTable" hidden>
+            <thead><tr><th>ID</th><th>Name</th><th>Result</th></tr></thead><tbody></tbody>
+          </table></div>
+          <p id="migSummary" role="status"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Product editor -->
+  <dialog id="editor" aria-labelledby="editorTitle">
+    <form id="productForm" novalidate>
+      <header class="dlg__head">
+        <h2 id="editorTitle">Add product</h2>
+        <button class="icon-btn" type="button" id="editorClose" aria-label="Close">✕</button>
+      </header>
+      <div class="dlg__body">
+        <label class="field"><span>Name *</span><input id="fName" maxlength="200" required /><small class="err" data-err="name"></small></label>
+        <div class="grid2">
+          <label class="field"><span>Price (₦) *</span><input id="fPrice" type="number" min="0" step="any" inputmode="decimal" required /><small class="err" data-err="price"></small></label>
+          <label class="field"><span>Compare-at price (₦)</span><input id="fCompare" type="number" min="0" step="any" inputmode="decimal" /><small class="hint">Optional. Higher than price → shows a Sale badge.</small><small class="err" data-err="compareAt"></small></label>
+        </div>
+        <div class="grid2">
+          <label class="field"><span>Category</span><input id="fCategory" list="categoryList" maxlength="100" autocomplete="off" /><datalist id="categoryList"></datalist><small class="err" data-err="category"></small></label>
+          <label class="field"><span>Display order</span><input id="fOrder" type="number" step="any" inputmode="decimal" /><small class="hint">Lower numbers appear first. Empty = last.</small><small class="err" data-err="sortOrder"></small></label>
+        </div>
+        <label class="field"><span>Description</span><textarea id="fDesc" rows="4" maxlength="5000"></textarea><small class="err" data-err="description"></small></label>
+
+        <div class="field" id="sizesField"><span>Sizes</span><div class="chips" data-chips="sizes"></div>
+          <div class="presets" id="sizePresets"></div></div>
+        <div class="field" id="coloursField"><span>Colours</span><div class="chips" data-chips="colours"></div></div>
+
+        <fieldset class="field">
+          <legend>Stock</legend>
+          <div class="radios">
+            <label><input type="radio" name="stockMode" value="none" /> Not tracked</label>
+            <label><input type="radio" name="stockMode" value="total" /> Total quantity</label>
+            <label><input type="radio" name="stockMode" value="variants" /> Per size / colour</label>
+          </div>
+          <input id="fStockTotal" type="number" min="0" step="1" inputmode="numeric" placeholder="Units available" aria-label="Total units available" hidden />
+          <div id="stockVariants" class="variants" hidden></div>
+        </fieldset>
+
+        <div class="field">
+          <span>Images <small class="hint">First image is the card image. Max 12, 5 MB each.</small></span>
+          <div class="images" id="images"></div>
+          <div class="row row--wrap">
+            <label class="btn btn--line btn--sm file-btn">Upload images<input type="file" id="fFiles" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" multiple /></label>
+            <input type="url" id="fUrl" placeholder="…or paste an https:// image URL" aria-label="Image URL" />
+            <button class="btn btn--line btn--sm" type="button" id="fUrlAdd">Add URL</button>
+          </div>
+          <small class="err" data-err="images"></small>
+        </div>
+
+        <label class="check"><input type="checkbox" id="fPublished" /> Published (visible on the storefront)</label>
+        <p class="form-error" id="formError" role="alert"></p>
+      </div>
+      <footer class="dlg__foot">
+        <span class="muted" id="saveStatus"></span>
+        <button class="btn btn--line" type="button" id="editorCancel">Cancel</button>
+        <button class="btn btn--solid" type="submit" id="saveBtn">Save product</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Confirm delete -->
+  <dialog id="confirm" aria-labelledby="confirmTitle">
+    <div class="dlg__body">
+      <h2 id="confirmTitle">Delete product?</h2>
+      <p id="confirmText"></p>
+    </div>
+    <footer class="dlg__foot">
+      <button class="btn btn--line" type="button" id="confirmNo">Cancel</button>
+      <button class="btn btn--danger" type="button" id="confirmYes">Delete</button>
+    </footer>
+  </dialog>
+
+  <script src="/products.js"></script>
+  <script src="/firebase-config.js"></script>
+  <script type="module" src="/admin/admin.js"></script>
+</body>
+</html>
