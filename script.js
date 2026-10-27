@@ -136,20 +136,41 @@
   if (collLabel) collLabel.textContent = 'Collection ' + new Date().getFullYear();
 
   /* ---- FOOTER SOCIAL LINKS (only real, configured links are shown) ---- */
-  const social = document.getElementById('footerSocial');
-  if (social) {
-    const links = [];
-    const s = CFG.social || {};
-    if (s.instagram) links.push(['Instagram', 'https://www.instagram.com/zalielscasual/']);
-    if (s.pinterest) links.push(['Pinterest', s.pinterest]);
-    if (CFG.whatsappNumber) links.push(['WhatsApp', `https://wa.me/${CFG.whatsappNumber}`]);
-    links.forEach(([label, href]) => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = href; a.textContent = label; a.target = '_blank'; a.rel = 'noopener noreferrer';
-      li.appendChild(a); social.appendChild(li);
-    });
-  }
+  
+const social = document.getElementById('footerSocial');
+
+if (social) {
+  social.replaceChildren();
+
+  const links = [
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/zalielscasual/'
+    },
+    {
+      label: 'Pinterest',
+      href: 'https://www.pinterest.com/'
+    },
+    {
+      label: 'WhatsApp',
+      href: 'https://wa.me/2349138947809'
+    }
+  ];
+
+  links.forEach(({ label, href }) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+
+    a.href = href;
+    a.textContent = label;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+
+    li.appendChild(a);
+    social.appendChild(li);
+  });
+}
+
 
   /* ---- SEO META (canonical / social preview) when configured ---- */
   function setMeta(attr, key, value) {
