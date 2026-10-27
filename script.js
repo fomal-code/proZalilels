@@ -153,7 +153,7 @@ if (social) {
     },
     {
       label: 'WhatsApp',
-      href: 'https://wa.me/2349138947809'
+      href: 'https://wa.me/2348178435066'
     }
   ];
 
