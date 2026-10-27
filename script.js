@@ -119,7 +119,7 @@
 
       const brand  = CFG.brand || 'Zaliels';
       const waText = `Hello ${brand},\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject || 'General Inquiry'}\n\n${message}`;
-      const waNumber = CFG.whatsappNumber || '2349138947809';
+      const waNumber = CFG.whatsappNumber || '2348178435066';
       const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`;
 
       contactForm.style.display = 'none';
@@ -140,7 +140,7 @@
   if (social) {
     const links = [];
     const s = CFG.social || {};
-    if (s.instagram) links.push(['Instagram', s.instagram]);
+    if (s.instagram) links.push(['Instagram', 'https://www.instagram.com/zalielscasual/']);
     if (s.pinterest) links.push(['Pinterest', s.pinterest]);
     if (CFG.whatsappNumber) links.push(['WhatsApp', `https://wa.me/${CFG.whatsappNumber}`]);
     links.forEach(([label, href]) => {
